@@ -43,5 +43,13 @@
     "productivity",
     "side-panel",
     "open-source"
-  ]
+  ],
+  "homepage": "https://github.com/svenzer6/chromotion#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/svenzer6/chromotion.git"
+  },
+  "bugs": {
+    "url": "https://github.com/svenzer6/chromotion/issues"
+  }
 }
