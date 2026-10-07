@@ -1,0 +1,45 @@
+# Pushing a tag like v0.2.0 tests, builds and publishes a GitHub Release with
+# the installable zip. Uses only the built-in GITHUB_TOKEN — no secrets needed.
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Tag must match manifest version
+        run: |
+          v="$(node -p "require('./public/manifest.json').version")"
+          [ "v$v" = "${GITHUB_REF_NAME}" ] || { echo "Tag ${GITHUB_REF_NAME} != manifest v$v"; exit 1; }
+
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - run: node scripts/package.mjs
+
+      - name: Release notes
+        run: |
+          notes="docs/release-notes/${GITHUB_REF_NAME}.md"
+          [ -f "$notes" ] || echo "Chromotion ${GITHUB_REF_NAME}" > "$notes"
+          echo "NOTES=$notes" >> "$GITHUB_ENV"
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          name: Chromotion ${{ github.ref_name }}
+          body_path: ${{ env.NOTES }}
+          files: release/*.zip

@@ -26,14 +26,17 @@ await mkdir(outDir, { recursive: true });
 await cp(dist, outDir, { recursive: true });
 await cp(resolve(import.meta.dirname, 'KURULUM.txt'), resolve(outDir, 'KURULUM.txt'));
 
-try {
-  // bsdtar (Windows 10+, macOS) writes zip archives when the name ends in .zip
-  // Windows ships bsdtar in System32 (Git Bash's GNU tar cannot write zip files).
-  const tar = process.platform === 'win32' ? join(process.env.SystemRoot ?? 'C:/Windows', 'System32', 'tar.exe') : 'tar';
+if (process.platform === 'win32') {
+  // Windows ships bsdtar in System32; it writes zip when the name ends in .zip.
+  // (Git Bash's GNU tar would silently write a tar file instead.)
+  const tar = join(process.env.SystemRoot ?? 'C:/Windows', 'System32', 'tar.exe');
   execFileSync(tar, ['-a', '-c', '-f', zip, '-C', outDir, '.'], { stdio: 'pipe' });
-} catch {
-  execFileSync('zip', ['-r', '-q', zip, '.'], { cwd: outDir, stdio: 'pipe' });
+} else {
+  execFileSync('zip', ['-r', '-q', '-X', zip, '.'], { cwd: outDir, stdio: 'pipe' });
 }
+// A zip starts with "PK\x03\x04"; refuse to publish anything else.
+const magic = (await readFile(zip)).subarray(0, 4).toString('latin1');
+if (magic !== 'PK\x03\x04') throw new Error(`${zip} is not a zip archive`);
 const size = (await stat(zip)).size;
 console.log(`release/${name}/  (Load unpacked this folder)`);
 console.log(`release/${name}.zip  ${(size / 1024).toFixed(0)} KB — share this; extract before loading`);
