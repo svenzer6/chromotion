@@ -1,0 +1,47 @@
+{
+  "name": "chromotion",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Chromotion — AI-assisted Canvas workspaces for Chrome tabs (Manifest V3 side panel extension).",
+  "type": "module",
+  "scripts": {
+    "dev": "vite build --watch --mode development",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "icons": "node scripts/build-icons.mjs",
+    "e2e": "node scripts/e2e-smoke.mjs",
+    "package": "node scripts/package.mjs",
+    "release": "npm run build && node scripts/package.mjs",
+    "screenshots": "node scripts/screenshots.mjs && node scripts/hero.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
+    "@tanstack/react-virtual": "^3.14.13",
+    "lucide-react": "^1.52.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.3.4",
+    "@types/node": "^26.6.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "playwright": "^1.63.0",
+    "sharp": "^0.35.5",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.3",
+    "vitest": "^5.0.3"
+  },
+  "author": "Burhan Celebi <drburhancelebi@icloud.com>",
+  "license": "MIT",
+  "keywords": [
+    "chrome-extension",
+    "tabs",
+    "productivity",
+    "side-panel",
+    "open-source"
+  ]
+}

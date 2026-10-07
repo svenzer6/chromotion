@@ -1,0 +1,9 @@
+node_modules/
+*.zip
+.env*
+test-results/
+.e2e-profile/
+.shots-profile/
+release/
+.claude/
+LINKEDIN_POST.md

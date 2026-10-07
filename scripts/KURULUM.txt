@@ -1,0 +1,34 @@
+CHROMOTION — KURULUM / INSTALL
+by Burhan Celebi · drburhancelebi@icloud.com
+Ücretsiz ve açık kaynak (MIT). Hesap ya da API anahtarı gerekmez.
+==================================================
+
+TÜRKÇE
+------
+1) Bu zip dosyasını bir klasöre çıkarın (sağ tık → "Tümünü ayıkla").
+   ÖNEMLİ: Zip dosyasının kendisi Chrome'a yüklenemez, önce çıkarılmalı.
+2) Chrome'da adres çubuğuna yazın:  chrome://extensions
+3) Sağ üstteki "Geliştirici modu" (Developer mode) anahtarını açın.
+4) "Paketlenmemiş öğe yükle" (Load unpacked) düğmesine tıklayın.
+5) İçinde manifest.json dosyası BULUNAN klasörü seçin.
+   (Seçtiğiniz klasörü açtığınızda manifest.json'u doğrudan görmelisiniz.)
+6) Araç çubuğundaki yapboz simgesinden Chromotion'ı sabitleyin ve tıklayın.
+   Kısayol: Alt+Shift+C
+
+Çalışmıyorsa:
+- "Manifest file is missing" → yanlış klasör seçildi (bir üst/alt klasörü deneyin).
+- "Geliştirici modu" görünmüyor/kilitli → bilgisayar şirket politikasıyla yönetiliyor;
+  BT yöneticisinin izin vermesi gerekir.
+- Chrome 120 veya daha yeni olmalı (chrome://settings/help).
+- index.html dosyasına çift tıklamak çalışmaz; eklenti Chrome'un içinden açılır.
+- Hata devam ederse: Chromotion Ayarlar → "About & diagnostics" → "Copy report"
+  ve raporu drburhancelebi@icloud.com adresine gönderin.
+- Klasörü sonradan taşımayın/silmeyin; Chrome eklentiyi o klasörden çalıştırır.
+
+ENGLISH
+-------
+1) Extract this zip into a folder (the zip itself cannot be loaded).
+2) Open chrome://extensions and enable "Developer mode".
+3) Click "Load unpacked" and select the folder that contains manifest.json.
+4) Pin Chromotion from the puzzle menu and click it (Alt+Shift+C).
+Requires Chrome 120+ (also works in Microsoft Edge: edge://extensions).

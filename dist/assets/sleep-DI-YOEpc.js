@@ -1,0 +1,1 @@
+import{a as e}from"./url-CbTy_J4c.js";var t=`sleep/index.html`,n=e=>e.replace(/\/?$/,`/`)+t,r=(e,t,r)=>`${n(e)}#${new URLSearchParams({u:t,t:r.slice(0,200)}).toString()}`,i=(t,r)=>{if(!r.startsWith(n(t)))return;let i=r.slice(r.indexOf(`#`)+1),a=new URLSearchParams(i).get(`u`)??``;return e(a)?a:void 0};export{i as n,r as t};
